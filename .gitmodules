@@ -5,4 +5,4 @@
 [submodule "bach-end"]
 	path = bach-end
 	url = git@github.com:vanloc19/InstagramClone_BackEnd.git
-	branch = server
+	branch = main

@@ -2,100 +2,54 @@
 
 A full-stack Instagram clone application built with modern web technologies, featuring real-time messaging, stories, posts, comments, and user interactions.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
-- [Detailed Project Structure](#detailed-project-structure)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## ✨ Features
 
-- 🔐 **Authentication & Authorization**: JWT-based authentication with Google OAuth support
-- 📸 **Posts Management**: Create, edit, delete, and interact with posts
+- 🔐 **Authentication**: JWT-based authentication with Google OAuth
+- 📸 **Posts**: Create, edit, delete, and interact with posts
 - 💬 **Real-time Messaging**: Socket.io-powered messaging with media support
 - 📱 **Stories**: Create and view stories with music support
-- 💬 **Comments & Replies**: Interactive comment system with replies
-- 👥 **User Profiles**: Comprehensive user profiles with follow/unfollow functionality
-- 🔔 **Notifications**: Real-time notifications for user interactions
-- 📹 **Video Calls**: Peer-to-peer video calling functionality
+- 💬 **Comments & Replies**: Interactive comment system
+- 👥 **User Profiles**: Follow/unfollow functionality
+- 🔔 **Notifications**: Real-time notifications
+- 📹 **Video Calls**: Peer-to-peer video calling
 - 🎨 **Modern UI**: Responsive design with TailwindCSS and Framer Motion
-- ⚡ **Performance**: Optimized with caching, compression, and lazy loading
+- ⚡ **Performance**: Optimized with caching and lazy loading
 
 ## 🛠 Tech Stack
 
-### Frontend
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **UI Library**: React 19
-- **State Management**: Redux Toolkit, Zustand
-- **Styling**: TailwindCSS, SCSS
-- **Animation**: Framer Motion
-- **Real-time**: Socket.io Client
-- **Data Fetching**: SWR
-- **Video Calls**: PeerJS
+**Frontend:** Next.js 15, React 19, TypeScript, Redux Toolkit, TailwindCSS, Socket.io, PeerJS
 
-### Backend
-- **Framework**: Express.js 5
-- **Database**: MongoDB (Mongoose)
-- **Authentication**: JWT, Google OAuth
-- **Real-time**: Socket.io
-- **File Upload**: Cloudinary, Multer
-- **Security**: Helmet, CORS, bcrypt
-- **Caching**: API Cache
-- **Video Processing**: FFmpeg
-- **Communication**: Twilio (for calls)
+**Backend:** Express.js 5, MongoDB, Socket.io, JWT, Cloudinary, FFmpeg, Twilio
 
 ## 📁 Project Structure
 
-This project uses Git Submodules to manage the frontend and backend repositories:
+This project uses Git Submodules:
 
 ```
 InstagramClone/
-├── front-end/          # Frontend submodule (Next.js)
-├── bach-end/           # Backend submodule (Express.js)
-└── README.md           # This file
+├── front-end/    # Next.js frontend
+└── bach-end/     # Express.js backend
 ```
 
-### Submodules
-- **front-end**: `git@github.com:vanloc19/InstagramClone_Front-End.git` (branch: main)
-- **bach-end**: `git@github.com:vanloc19/InstagramClone_BackEnd.git` (branch: main)
+**Submodules:**
+- `front-end`: [InstagramClone_Front-End](https://github.com/vanloc19/InstagramClone_Front-End)
+- `bach-end`: [InstagramClone_BackEnd](https://github.com/vanloc19/InstagramClone_BackEnd)
 
-## 📦 Prerequisites
+## 🚀 Quick Start
 
-Before you begin, ensure you have the following installed:
+### Prerequisites
 
-- **Node.js**: v18.x or higher
-- **npm**: v9.x or higher (or yarn/pnpm)
-- **MongoDB**: v6.x or higher (local or Atlas)
-- **Git**: Latest version
-- **FFmpeg**: For video processing (backend)
+- Node.js v18.x or higher
+- MongoDB v6.x or higher
+- Git
 
-## 🚀 Installation
-
-### 1. Clone the Repository
-
-Clone this repository along with its submodules:
+### Installation
 
 ```bash
 # Clone with submodules
 git clone --recurse-submodules git@github.com:vanloc19/InstagramClone.git
+cd InstagramClone
 
-# Or if you've already cloned without submodules
-git submodule update --init --recursive
-```
-
-### 2. Install Dependencies
-
-Install dependencies for both frontend and backend:
-
-```bash
 # Install backend dependencies
 cd bach-end
 npm install
@@ -105,153 +59,61 @@ cd ../front-end
 npm install
 ```
 
-## 🏃 Running the Project
+### Running
 
-### Development Mode
-
-#### Start Backend Server
+**Development:**
 
 ```bash
+# Backend (runs on http://localhost:5000)
 cd bach-end
 npm run server
-```
 
-The backend server will run on `http://localhost:5000`
-
-#### Start Frontend Server
-
-```bash
+# Frontend (runs on http://localhost:3000)
 cd front-end
 npm run dev
 ```
 
-The frontend will run on `http://localhost:3000`
-
-### Production Mode
-
-#### Build Frontend
+**Production:**
 
 ```bash
+# Build and start frontend
 cd front-end
 npm run build
 npm start
-```
 
-#### Start Backend
-
-```bash
+# Start backend
 cd bach-end
 npm start
 ```
 
-## 📂 Detailed Project Structure
+## 🔧 Submodules
 
-### Backend (`bach-end/`)
-```
-bach-end/
-├── config/              # Configuration files
-│   ├── db.config.js    # MongoDB configuration
-│   └── cloudinary.config.js
-├── controllers/         # Route controllers
-├── middlewares/         # Custom middlewares
-├── models/              # Mongoose models
-├── routes/              # API routes
-├── server/              # Socket.io services
-├── utils/               # Utility functions
-├── helper/              # Helper functions
-└── app.js              # Main application file
-```
-
-### Frontend (`front-end/`)
-```
-front-end/
-├── src/
-│   ├── app/            # Next.js App Router pages
-│   ├── components/     # React components
-│   ├── contexts/       # React contexts
-│   ├── hooks/          # Custom hooks
-│   ├── server/         # Server-side utilities
-│   ├── store/          # Redux store
-│   ├── types/          # TypeScript types
-│   └── utils/          # Utility functions
-└── public/             # Static assets
-```
-
-## 📚 API Documentation
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `POST /api/auth/logout` - Logout user
-- `GET /api/auth/me` - Get current user
-
-### Posts
-- `GET /api/posts` - Get all posts
-- `POST /api/posts` - Create new post
-- `GET /api/posts/:id` - Get post by ID
-- `PUT /api/posts/:id` - Update post
-- `DELETE /api/posts/:id` - Delete post
-- `POST /api/posts/:id/like` - Like/unlike post
-
-### Users
-- `GET /api/users/:id` - Get user profile
-- `PUT /api/users/:id` - Update user profile
-- `POST /api/users/:id/follow` - Follow user
-- `POST /api/users/:id/unfollow` - Unfollow user
-
-### Messaging
-- `GET /api/messenger/conversations` - Get conversations
-- `GET /api/messenger/messages/:conversationId` - Get messages
-- `POST /api/messenger/send` - Send message
-
-### Stories
-- `GET /api/stories` - Get all stories
-- `POST /api/stories` - Create story
-- `GET /api/stories/:id` - Get story by ID
-
-## 🔧 Updating Submodules
-
-If you need to update the submodules to their latest versions:
+Update submodules to latest version:
 
 ```bash
-# Update all submodules
 git submodule update --remote
-
-# Update specific submodule
-git submodule update --remote front-end
-git submodule update --remote bach-end
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📝 Notes
 
-- This project uses Git Submodules to manage separate repositories for frontend and backend
-- Make sure to initialize and update submodules when cloning the repository
+- This project uses Git Submodules for frontend and backend
+- Initialize submodules when cloning: `git submodule update --init --recursive`
 - Each submodule can be developed and deployed independently
 
 ## 📄 License
 
-This project is licensed under the ISC License.
+Copyright © 2025 vanloc19. All rights reserved.
 
-## 👤 Author
+This project is proprietary and confidential. Unauthorized copying, modification, distribution, or use of this project, via any medium is strictly prohibited.
+
+## 👤 Contact
 
 **vanloc19**
 
-- GitHub: [@vanloc19](https://github.com/vanloc19)
-
-## 🙏 Acknowledgments
-
-- Inspired by Instagram's functionality and user experience
-- Built with modern web technologies and best practices
+- 📧 Email: [tovanloc19@gmail.com](mailto:tovanloc19@gmail.com)
+- 📘 Facebook: [vanloc1963](https://www.facebook.com/vanloc1963/)
+- 💻 GitHub: [@vanloc19](https://github.com/vanloc19)
 
 ---
 
-**Note**: This is a clone project for educational purposes. Make sure to comply with Instagram's terms of service and respect intellectual property rights.
-
+**Note:** This is a clone project for educational purposes. Please comply with Instagram's terms of service and respect intellectual property rights.
